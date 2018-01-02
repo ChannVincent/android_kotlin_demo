@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
@@ -16,13 +17,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         recyclerView = findViewById(R.id.recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = UserListAdapter(userList, this, {
-            Toast.makeText(this, "hello ", Toast.LENGTH_LONG).show()
+        recyclerView.adapter = UserListAdapter(userList, this, { user : User ->
+                    Toast.makeText(this, "hello " + user.name + " " + user.firstName, Toast.LENGTH_LONG).show()
+                    Log.e("TAG", "hello " + user.name + " " + user.firstName)
         })
         loadData()
     }
 
-    fun loadData() {
+    private fun loadData() {
         userList.add(User("Chann", "Vincent", "https://", 26))
         userList.add(User("Cheniere", "Jon", "https://", 35))
         userList.add(User("Gay", "Alexandre", "https://", 24))
