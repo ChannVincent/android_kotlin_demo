@@ -4,18 +4,21 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var recyclerView: RecyclerView
-    var userList: MutableList<User> = ArrayList()
+    private lateinit var recyclerView: RecyclerView
+    private var userList: MutableList<User> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         recyclerView = findViewById(R.id.recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = UserListAdapter(userList, this)
+        recyclerView.adapter = UserListAdapter(userList, this, {
+            Toast.makeText(this, "hello ", Toast.LENGTH_LONG).show()
+        })
         loadData()
     }
 

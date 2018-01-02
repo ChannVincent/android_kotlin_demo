@@ -12,7 +12,7 @@ import android.widget.TextView
  * Created by vincentchann on 28/12/2017.
  */
 
-class UserListAdapter (private val userList:List<User>, private val context:Context) : RecyclerView.Adapter<UserListAdapter.ViewHolder>() {
+class UserListAdapter (private val userList:List<User>, private val context:Context, val listener: (User) -> Unit) : RecyclerView.Adapter<UserListAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int {
         return userList.size
@@ -24,6 +24,9 @@ class UserListAdapter (private val userList:List<User>, private val context:Cont
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
         holder?.titleView?.text = userList.get(position).firstName + " " + userList.get(position).name
+        holder?.itemView?.setOnClickListener(View.OnClickListener {
+            listener(userList[position])
+        })
     }
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
