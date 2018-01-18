@@ -12,9 +12,14 @@ class LoginView : AnkoComponent<LoginActivity> {
 
     override fun createView(ui: AnkoContext<LoginActivity>): View = with(ui) {
         verticalLayout {
-            val name = editText()
+            val username = editText {
+                hint = "username"
+            }
+            val password = editText {
+                hint = "password"
+            }
             button("Say Hello") {
-                onClick { toast("Hello, ${name.text}!") }
+                onClick { toast("Hello, ${username.text}!") }
             }
         }
     }
